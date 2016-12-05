@@ -1,24 +1,32 @@
 {
-	"name": "rctnet/opencnabphp",
-	"type": "library",
-	"description": "Conjunto de classes para geração e leitura de arquivos Cnab de remessa e retorno",
-	"keywords": ["boleto", "remessa", "retorno", "cnab", "cnab240", "cnab400"],
-	"licence": "MIT",
-	"authors": [
-		{
-			"name": "Rogerio Muniz de Castro",
-			"email": "rogerio@ciatec.net"
-		}
-	],
-	"autoload": {
-		"psr-4" : {
-			"CnabPHP\\" : [
-				"src"
-			]
-		}
-	},
-	"require": {
-		"php": ">=5.3.0"
-	},
-	"config": {}
+    "name": "fagoc/CnabPHP",
+    "type": "package",
+    "minimum-stability": "dev",
+    "description": "Lot of stuffs to help with 'remessa', 'retorno' e 'boleto'",
+    "homepage": "http://fagoc.br",
+    "version": "0.0.1",
+    "keywords": [
+        "boleto",
+        "remessa",
+        "retorno",
+        "cnab",
+        "cnab240",
+        "cnab400"
+    ],
+    "licence": "MIT",
+    "authors": [
+        {
+            "name": "Fagoc",
+            "email": "dev@fagoc.br"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CnabPHP\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "config": {}
 }
