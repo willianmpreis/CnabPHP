@@ -5,6 +5,7 @@
     "description": "Lot of stuffs to help with 'remessa', 'retorno' e 'boleto'",
     "homepage": "http://fagoc.br",
     "version": "0.0.1",
+    "license": "MIT",
     "keywords": [
         "boleto",
         "remessa",
@@ -13,7 +14,6 @@
         "cnab240",
         "cnab400"
     ],
-    "licence": "MIT",
     "authors": [
         {
             "name": "Fagoc",
