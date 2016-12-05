@@ -1,5 +1,5 @@
 {
-    "name": "fagoc/CnabPHP",
+    "name": "fagoc/cnab-php",
     "type": "package",
     "minimum-stability": "dev",
     "description": "Lot of stuffs to help with 'remessa', 'retorno' e 'boleto'",
