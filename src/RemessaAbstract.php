@@ -9,29 +9,38 @@ namespace CnabPHP;
 abstract class RemessaAbstract
 {
     /**
+     * @var array
+     */
+    const BANCOS = [
+        '104' => 'CaixaEconomicaFederal',
+        '237' => 'Bradesco',
+        '341' => 'Itau',
+        '756' => 'Sicoob',
+    ];
+    /**
      * @var string
      */
     public static $banco;
     /**
      * @var string
      */
-    public static $layout;
+    public static $leiaute;
     /**
      * @var string
      */
-    public static $header;
+    public static $cabecalho;
     /**
      * @var string
      */
-    public static $entryData;
+    public static $dados;
     /**
      * @var int
      */
-    public static $loteCounter = 1; // contador de lotes
+    public static $loteContador = 1; // contador de lotes
     /**
      * @var array
      */
-    private static $children = []; // armazena os registros filhos da classe remessa
+    private static $filhos = []; // armazena os registros filhos da classe remessa
     /**
      * @var array
      */
@@ -40,60 +49,75 @@ abstract class RemessaAbstract
     /**
      * RemessaAbstract constructor.
      * @param string $banco
-     * @param string $layout
-     * @param array $data
+     * @param string $leiaute
+     * @param array $dados
      */
-    public function __construct($banco, $layout, $data)
+    public function __construct($banco, $leiaute, $dados)
     {
-        self::$banco = "B" . $banco;
-        self::$layout = $layout;
-        $class = '\CnabPHP\Resources\\' . self::$banco . '\remessa\\' . self::$layout . '\Registro0';
-        self::$entryData = $data;
-        self::$header = new $class($data);
-        self::$children[] = self::$header;
+        self::$banco = self::BANCOS[$banco];
+        self::$leiaute = $leiaute;
+        self::$dados = $dados;
+
+        $class = $this->register(self::$banco, self::$leiaute, 0);
+
+        self::$cabecalho = new $class($dados);
+        self::$filhos[] = self::$cabecalho;
+    }
+
+    /**
+     * @param $banco
+     * @param $leiaute
+     * @param $registro
+     * @return string
+     */
+    protected function register($banco, $leiaute, $registro)
+    {
+        return "\\CnabPHP\\Resources\\{$banco}\\Remessa\\{$leiaute}\\Registro{$registro}";
     }
 
     /**
      * @param $data
      */
-    public function addDetail($data)
+    public function adicionarDetalhe($data)
     {
-        $class = '\CnabPHP\Resources\\' . self::$banco . '\remessa\\' . self::$layout . '\Registro1';
-        self::addChild(new $class($data));
+        //$class = '\CnabPHP\Resources\\' . self::$banco . '\remessa\\' . self::$layout . '\Registro1';
+        $class = $this->register(self::$banco, self::$leiaute, 1);
+        self::adicionarFilho(new $class($data));
         //self::$counter++;
     }
 
     /**
-     * @param $newLayout
+     * @param $leiaute
      */
-    public function changeLayout($newLayout)
+    public function trocarLeiaute($leiaute)
     {
-        self::$layout = $newLayout;
+        self::$leiaute = $leiaute;
     }
 
     /**
      * @param RegistroRemessaAbstract $child
      */
-    static private function addChild(RegistroRemessaAbstract $child)
+    static private function adicionarFilho(RegistroRemessaAbstract $child)
     {
-        self::$children[] = $child;
+        self::$filhos[] = $child;
     }
 
     /**
      * @param array $data
      * @return RemessaAbstract
      */
-    public function addLot(array $data)
+    public function adicionarLote(array $data)
     {
-        if (strpos(self::$layout, '240')) {
-            $class = '\CnabPHP\Resources\\' . self::$banco . '\remessa\\' . self::$layout . '\Registro1';
-            $loteData = $data ? $data : RemessaAbstract::$entryData;
+        if (strpos(self::$leiaute, '240')) {
+            //$class = '\CnabPHP\Resources\\' . self::$banco . '\remessa\\' . self::$layout . '\Registro1';
+            $class = $this->register(self::$banco, self::$leiaute, 1);
+            $loteData = $data ? $data : RemessaAbstract::$dados;
             $lote = new $class($loteData);
-            self::addChild($lote);
+            self::adicionarFilho($lote);
         } else {
             $lote = $this;
         }
-        self::$loteCounter++;
+        self::$loteContador++;
 
         return $lote;
     }
@@ -102,23 +126,24 @@ abstract class RemessaAbstract
      * @param $index
      * @return mixed
      */
-    public static function getLot($index)
+    public static function getLote($index)
     {
-        return self::$children[$index];
+        return self::$filhos[$index];
     }
 
     /**
      * @return string
      */
-    public function getText()
+    public function getArquivo()
     {
-        foreach (self::$children as $child) {
-            $child->getText();
+        foreach (self::$filhos as $child) {
+            $child->getArquivo();
         }
-        $class = '\CnabPHP\Resources\\' . self::$banco . '\remessa\\' . self::$layout . '\Registro9';
+        //$class = '\CnabPHP\Resources\\' . self::$banco . '\remessa\\' . self::$layout . '\Registro9';
+        $class = $this->register(self::$banco, self::$leiaute, 9);
         /** @var RegistroRemessaAbstract $header */
         $header = new $class(['1' => 1]);
-        $header->getText();
+        $header->getArquivo();
         return implode("\r\n", self::$retorno) . "\r\n";
     }
 }

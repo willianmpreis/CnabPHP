@@ -1,5 +1,5 @@
 <?php
-namespace CnabPHP\Resources\Generico\remessa\cnab400;
+namespace CnabPHP\Resources\Generico\Remessa\Cnab400;
 use CnabPHP\RegistroRemessaAbstract;
 use CnabPHP\RemessaAbstract;
 use CnabPHP\Especie;
@@ -9,16 +9,16 @@ class Generico1 extends RegistroRemessaAbstract
 {
     protected function set_numero_registro($value)
     {
-        $lote  = RemessaAbstract::getLot(0);
+        $lote  = RemessaAbstract::getLote(0);
         $this->data['numero_registro'] = $lote->get_counter();
     }
 
     protected function set_tipo_inscricao_empresa($value)
     {
-        $value = RemessaAbstract::$entryData['tipo_inscricao'];
+        $value = RemessaAbstract::$dados['tipo_inscricao'];
         if($value==1 || $value==2)
         {
-            $this->data['tipo_inscricao_empresa'] = RemessaAbstract::$entryData['tipo_inscricao'];
+            $this->data['tipo_inscricao_empresa'] = RemessaAbstract::$dados['tipo_inscricao'];
         }else{
             throw new Exception("O tipo de incrição deve ser 1  para CPF e 2 para CNPJ, o valor informado foi:".$value);       
         }
@@ -37,7 +37,7 @@ class Generico1 extends RegistroRemessaAbstract
 
     protected function set_numero_inscricao_empresa($value)
     {
-        $this->data['numero_inscricao_empresa'] = str_ireplace(array('.','/','-'),array(''), RemessaAbstract::$entryData['numero_inscricao']);
+        $this->data['numero_inscricao_empresa'] = str_ireplace(array('.','/','-'),array(''), RemessaAbstract::$dados['numero_inscricao']);
 
     }
 
@@ -49,30 +49,30 @@ class Generico1 extends RegistroRemessaAbstract
 
     protected function set_agencia($value)
     {
-        $this->data['agencia'] = RemessaAbstract::$entryData['agencia'];
+        $this->data['agencia'] = RemessaAbstract::$dados['agencia'];
     }
     protected function set_agencia_dv($value)
     {
-        $this->data['agencia'] = RemessaAbstract::$entryData['agencia_dv'];
+        $this->data['agencia'] = RemessaAbstract::$dados['agencia_dv'];
     }
 
     protected function set_agencia_cobradora($value)
     {
-        $this->data['agencia_cobradora'] = RemessaAbstract::$entryData['agencia'];
+        $this->data['agencia_cobradora'] = RemessaAbstract::$dados['agencia'];
     }
     protected function set_agencia_cobradora_dv($value)
     {
-        $this->data['agencia_cobradora_dv'] = RemessaAbstract::$entryData['agencia_dv'];
+        $this->data['agencia_cobradora_dv'] = RemessaAbstract::$dados['agencia_dv'];
     }
 
     protected function set_conta($value)
     {
-        $this->data['conta'] = RemessaAbstract::$entryData['conta'];
+        $this->data['conta'] = RemessaAbstract::$dados['conta'];
     }
 
     protected function set_conta_dv($value)
     {
-        $this->data['conta_dv'] = RemessaAbstract::$entryData['conta_dv'];
+        $this->data['conta_dv'] = RemessaAbstract::$dados['conta_dv'];
     }
 
     protected function set_cep_pagador($value)

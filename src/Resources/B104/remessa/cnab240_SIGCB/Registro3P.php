@@ -268,7 +268,7 @@ class Registro3P extends Generico3
 	}
 	public function inserirDetalhe($data)
 	{
-		$class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$layout.'\Registro3Q';
+		$class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$leiaute.'\Registro3Q';
 		$this->children[] = new $class($data);
 		if( isset($data['codigo_desconto2']) || 
 		isset($data['codigo_desconto3']) ||
@@ -276,7 +276,7 @@ class Registro3P extends Generico3
 		isset($data['mensagem']) ||
 		isset($data['email_pagador']))
 		{
-			$class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$layout.'\Registro3R';
+			$class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$leiaute.'\Registro3R';
 			$this->children[] = new $class($data);
 		}
 		if($data['emissao_boleto']==1)
@@ -285,20 +285,20 @@ class Registro3P extends Generico3
 			{
 				$data['mensagem_140'] = $data['mensagem_frente'];
 				$data['tipo_impressao'] = 1; 
-				$class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$layout.'\Registro3S1e2';
+				$class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$leiaute.'\Registro3S1e2';
 				$this->children[] = new $class($data);
 			}   
 			if(isset($data['mensagem_verso']))
 			{
 				$data['mensagem_140'] = $data['mensagem_verso'];
 				$data['tipo_impressao'] = 2; 
-				$class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$layout.'\Registro3S1e2';
+				$class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$leiaute.'\Registro3S1e2';
 				$this->children[] = new $class($data);
 			}   
 			if(isset($data['mensagem']))
 			{
 				if(count(explode(PHP_EOL,$data['mensagem']))>4){
-					$class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$layout.'\Registro3S3';
+					$class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$leiaute.'\Registro3S3';
 					$this->children[] = new $class($data);
 				}
 			}

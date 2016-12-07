@@ -1,6 +1,6 @@
 <?php
 /*
-* CnabPHP - Geração de arquivos de remessa e retorno em PHP
+* CnabPHP - Geração de arquivos de Remessa e retorno em PHP
 *
 * LICENSE: The MIT License (MIT)
 *
@@ -23,29 +23,23 @@
 * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-namespace CnabPHP\Resources\b756\retorno\L400;
-use CnabPHP\Resources\Generico\retorno\L400\Generico9;
-use CnabPHP\Exception;
+namespace CnabPHP\Resources\Generico\Remessa\Cnab240;
+use CnabPHP\RegistroRemessaAbstract;
+use CnabPHP\RemessaAbstract;
+use Exception;
 
-class Registro9 extends Generico9
+class Generico5 extends RegistroRemessaAbstract
 {
-    protected $meta = array(
-        'tipo_registro'=>array(
-            'tamanho'=>1,
-            'default'=>'9',
-            'tipo'=>'int',
-            'required'=>true),
-        'tipo_servico'=>array(
-            'tamanho'=>2,
-            'default'=>'',
-            'tipo'=>'int',
-            'required'=>true),
-        'codigo_banco'=>array(      //01.5
-            'tamanho'=>3,
-            'default'=>'756',
-            'tipo'=>'int',
-            'required'=>true),
-
-    );
+	protected function set_codigo_lote($value)
+	{
+		//ArquivoAbstract::$loteCounter++; 
+		$this->data['codigo_lote'] = RemessaAbstract::$loteContador;
+	}
+	protected function set_qtd_registros($value)
+	{
+		$lote  = RemessaAbstract::getLote(RemessaAbstract::$loteContador);
+		$this->data['qtd_registros'] = $lote->get_counter()+1;
+	}
 }
+
 ?>

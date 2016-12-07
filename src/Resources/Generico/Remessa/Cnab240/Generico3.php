@@ -1,6 +1,6 @@
 <?php
 /*
-* CnabPHP - Gera��o de arquivos de remessa e retorno em PHP
+* CnabPHP - Geração de arquivos de Remessa e retorno em PHP
 *
 * LICENSE: The MIT License (MIT)
 *
@@ -23,7 +23,7 @@
 * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-namespace CnabPHP\Resources\Generico\remessa\cnab240;
+namespace CnabPHP\Resources\Generico\Remessa\Cnab240;
 use CnabPHP\RegistroRemessaAbstract;
 use CnabPHP\RemessaAbstract;
 use CnabPHP\Especie;
@@ -34,11 +34,11 @@ class Generico3 extends RegistroRemessaAbstract
 	protected function set_codigo_lote($value)
 	{
 		//ArquivoAbstract::$loteCounter++; 
-		$this->data['codigo_lote'] = RemessaAbstract::$loteCounter;
+		$this->data['codigo_lote'] = RemessaAbstract::$loteContador;
 	}
 	protected function set_numero_registro($value)
 	{
-		$lote  = RemessaAbstract::getLot(RemessaAbstract::$loteCounter);
+		$lote  = RemessaAbstract::getLote(RemessaAbstract::$loteContador);
 		$this->data['numero_registro'] = $lote->get_counter();
 	}
 	protected function set_tipo_inscricao($value)
@@ -51,23 +51,23 @@ class Generico3 extends RegistroRemessaAbstract
 	}
 	protected function set_codigo_beneficiario($value)
 	{
-		$this->data['codigo_beneficiario'] = RemessaAbstract::$entryData['codigo_beneficiario'];
+		$this->data['codigo_beneficiario'] = RemessaAbstract::$dados['codigo_beneficiario'];
 	}
 	protected function set_agencia($value)
 	{
-		$this->data['agencia'] = RemessaAbstract::$entryData['agencia'];
+		$this->data['agencia'] = RemessaAbstract::$dados['agencia'];
 	}
 	protected function set_agencia_dv($value)
 	{
-		$this->data['agencia_dv'] = RemessaAbstract::$entryData['agencia_dv'];
+		$this->data['agencia_dv'] = RemessaAbstract::$dados['agencia_dv'];
 	}
 	protected function set_codigo_convenio($value)
 	{
-		$this->data['codigo_convenio'] = RemessaAbstract::$entryData['codigo_beneficiario'];
+		$this->data['codigo_convenio'] = RemessaAbstract::$dados['codigo_beneficiario'];
 	}
 	protected function set_com_registro($value)
 	{
-		$lote  = RemessaAbstract::getLot(RemessaAbstract::$loteCounter);
+		$lote  = RemessaAbstract::getLote(RemessaAbstract::$loteContador);
 		$this->data['com_registro'] = $lote->tipo_servico;
 	}
 	protected function set_emissao_boleto($value)

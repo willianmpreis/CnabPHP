@@ -1,6 +1,6 @@
 <?php
 /*
- * CnabPHP - GeraÃ§Ã£o de arquivos de remessa e retorno em PHP
+ * CnabPHP - GeraÃ§Ã£o de arquivos de Remessa e retorno em PHP
  *
  * LICENSE: The MIT License (MIT)
  *
@@ -24,10 +24,14 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace CnabPHP\Resources\b756\remessa\cnab400;
+namespace CnabPHP\Resources\Sicoob\Remessa\Cnab400;
 
-use CnabPHP\Resources\Generico\remessa\cnab400\Generico0;
+use CnabPHP\Resources\Generico\Remessa\Cnab400\Generico0;
 
+/**
+ * Class Registro0
+ * @package CnabPHP\Resources\Sicoob\Remessa\Cnab400
+ */
 class Registro0 extends Generico0
 {
         protected $meta = array(
@@ -41,9 +45,9 @@ class Registro0 extends Generico0
             'default'=>'1',
             'tipo'=>'int',
             'required'=>true),
-        'literal_remessa'=>array(
+        'literal_Remessa'=>array(
             'tamanho'=>7,
-            'default'=>'remessa',
+            'default'=>'Remessa',
             'tipo'=>'alfa',
             'required'=>true),
         'tipo_servico'=>array(

@@ -1,5 +1,5 @@
 <?php
-namespace CnabPHP\Resources\Generico\remessa\cnab400;
+namespace CnabPHP\Resources\Generico\Remessa\Cnab400;
 use CnabPHP\RegistroRemessaAbstract;
 use CnabPHP\RemessaAbstract;
 use Exception;
@@ -14,7 +14,7 @@ class Generico0 extends RegistroRemessaAbstract
     
     public function inserirDetalhe($data)
     {
-        $class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$layout.'\Registro1';
+        $class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\Remessa\\'.RemessaAbstract::$leiaute.'\Registro1';
         $this->children[] = new $class($data);
     }
     

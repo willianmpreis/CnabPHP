@@ -1,7 +1,7 @@
 <?php
-namespace CnabPHP\Resources\b756\remessa\cnab400;
+namespace CnabPHP\Resources\Sicoob\Remessa\Cnab400;
 
-use CnabPHP\Resources\Generico\remessa\cnab400\Generico9;
+use CnabPHP\Resources\Generico\Remessa\Cnab400\Generico9;
 
 class Registro9 extends Generico9
 {

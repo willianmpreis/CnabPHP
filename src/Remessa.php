@@ -34,11 +34,11 @@ class Remessa extends RemessaAbstract
     /**
      * Remessa constructor.
      * @param $banco
-     * @param $layout
-     * @param $data
+     * @param $leiaute
+     * @param $dados
      */
-    public function __construct($banco, $layout, $data)
+    public function __construct($banco, $leiaute, $dados)
     {
-        parent::__construct($banco, $layout, $data);
+        parent::__construct($banco, $leiaute, $dados);
     }
 }

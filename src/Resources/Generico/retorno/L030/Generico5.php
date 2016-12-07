@@ -1,6 +1,6 @@
 <?php
 /*
-* CnabPHP - Gera��o de arquivos de remessa e retorno em PHP
+* CnabPHP - Geração de arquivos de Remessa e retorno em PHP
 *
 * LICENSE: The MIT License (MIT)
 *
@@ -33,11 +33,11 @@ class Generico5 extends RegistroRemessaAbstract
 	protected function set_codigo_lote($value)
 	{
 		//ArquivoAbstract::$loteCounter++; 
-		$this->data['codigo_lote'] = RemessaAbstract::$loteCounter;
+		$this->data['codigo_lote'] = RemessaAbstract::$loteContador;
 	}
 	protected function set_qtd_registros($value)
 	{
-		$lote  = RemessaAbstract::getLot(RemessaAbstract::$loteCounter);
+		$lote  = RemessaAbstract::getLote(RemessaAbstract::$loteContador);
 		$this->data['qtd_registros'] = $lote->get_counter();
 	}
 }

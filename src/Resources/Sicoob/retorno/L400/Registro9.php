@@ -1,6 +1,6 @@
 <?php
 /*
-* CnabPHP - Gera��o de arquivos de remessa e retorno em PHP
+* CnabPHP - Geração de arquivos de remessa e retorno em PHP
 *
 * LICENSE: The MIT License (MIT)
 *
@@ -23,23 +23,29 @@
 * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-namespace CnabPHP\Resources\Generico\remessa\cnab240;
-use CnabPHP\RegistroRemessaAbstract;
-use CnabPHP\RemessaAbstract;
-use Exception;
+namespace CnabPHP\Resources\Sicoob\retorno\L400;
+use CnabPHP\Resources\Generico\retorno\L400\Generico9;
+use CnabPHP\Exception;
 
-class Generico9 extends RegistroRemessaAbstract
+class Registro9 extends Generico9
 {
-	protected function set_qtd_lotes($value)
-	{
-		//ArquivoAbstract::$loteCounter++; 
-		$this->data['qtd_lotes'] = RemessaAbstract::$loteCounter;
-	}
-	protected function set_qtd_registros($value)
-	{
-		$lote  = RemessaAbstract::getLot(RemessaAbstract::$loteCounter);
-		$this->data['qtd_registros'] = $lote->get_counter()+2;
-	}
-}
+    protected $meta = array(
+        'tipo_registro'=>array(
+            'tamanho'=>1,
+            'default'=>'9',
+            'tipo'=>'int',
+            'required'=>true),
+        'tipo_servico'=>array(
+            'tamanho'=>2,
+            'default'=>'',
+            'tipo'=>'int',
+            'required'=>true),
+        'codigo_banco'=>array(      //01.5
+            'tamanho'=>3,
+            'default'=>'756',
+            'tipo'=>'int',
+            'required'=>true),
 
+    );
+}
 ?>

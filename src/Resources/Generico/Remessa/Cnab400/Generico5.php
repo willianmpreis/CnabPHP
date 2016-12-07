@@ -1,5 +1,5 @@
 <?php
-namespace rctnet\Resources\Generico\remessa\cnab400;
+namespace rctnet\Resources\Generico\Remessa\Cnab400;
 use rctnet\RegistroRemAbstract;
 use Exception;
 

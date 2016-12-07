@@ -1,7 +1,7 @@
 <?php
-namespace CnabPHP\Resources\b756\remessa\cnab400;
+namespace CnabPHP\Resources\Sicoob\Remessa\Cnab400;
 
-use CnabPHP\Resources\Generico\remessa\cnab400\Generico1;
+use CnabPHP\Resources\Generico\Remessa\Cnab400\Generico1;
 use CnabPHP\RegistroRemessaAbstract;
 use CnabPHP\RemessaAbstract;
 
@@ -312,8 +312,8 @@ class Registro1 extends Generico1
     */
     protected static function mod11($num)
     {
-        $codigo_beneficiario = RemessaAbstract::$entryData['codigo_beneficiario'].RemessaAbstract::$entryData['codigo_beneficiario_dv']; // NÃºmero do contrato: Ã o mesmo nÃºmero da conta
-        $agencia = RemessaAbstract::$entryData['agencia']; // NÃºmero do contrato: Ã o mesmo nÃºmero da conta
+        $codigo_beneficiario = RemessaAbstract::$dados['codigo_beneficiario'].RemessaAbstract::$dados['codigo_beneficiario_dv']; // NÃºmero do contrato: Ã o mesmo nÃºmero da conta
+        $agencia = RemessaAbstract::$dados['agencia']; // NÃºmero do contrato: Ã o mesmo nÃºmero da conta
 
         $NossoNumero = str_pad($num,7,0,STR_PAD_LEFT); // AtÃ© 7 dÃ­gitos, nÃºmero sequencial iniciado em 1 (Ex.: 1, 2...)
         $qtde_nosso_numero = strlen($NossoNumero);

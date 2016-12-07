@@ -203,7 +203,7 @@ abstract class RegistroRemessaAbstract
     /**
      *
      */
-    public function getText()
+    public function getArquivo()
     {
         $retorno = '';
         foreach ($this->meta as $key => $value) {
@@ -213,7 +213,7 @@ abstract class RegistroRemessaAbstract
         RemessaAbstract::$retorno[] = $retorno;
         if ($this->children) {
             foreach ($this->children as $child) {
-                $child->getText();
+                $child->getArquivo();
             }
         }
     }

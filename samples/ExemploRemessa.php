@@ -44,9 +44,9 @@ $arquivo = new Remessa(756,'cnab400',array(
     'numero_sequencial_arquivo'     => 1,
     'situacao_arquivo' =>'P' // use T para teste e P para produ��o
 ));
-$lote  = $arquivo->addLot(array('tipo_servico'=> 1)); // tipo_servico  = 1 para cobran�a registrada, 2 para sem registro
+$lote  = $arquivo->adicionarLote(array('tipo_servico'=> 1)); // tipo_servico  = 1 para cobran�a registrada, 2 para sem registro
 
-$lote->addDetail(array(
+$lote->adicionarDetalhe(array(
     'codigo_ocorrencia' => 1, //1 = Entrada de título, para outras opções ver nota explicativa C004 manual Cnab_SIGCB na pasta docs
     'nosso_numero'      => 50, // numero sequencial de boleto
     'seu_numero'        => 43,// se nao informado usarei o nosso numero
@@ -85,5 +85,5 @@ $lote->addDetail(array(
     'taxa_multa'         => 30.00, // taxa de multa em percentual
     'taxa_juros'         => 30.00, // taxa de juros em percentual
 ));
-echo $arquivo->getText();
+echo $arquivo->getArquivo();
 ?>

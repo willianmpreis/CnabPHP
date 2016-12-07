@@ -1,6 +1,6 @@
 <?php
 /*
-* CnabPHP - Geração de arquivos de remessa e retorno em PHP
+* CnabPHP - Geração de arquivos de Remessa e retorno em PHP
 *
 * LICENSE: The MIT License (MIT)
 *
@@ -23,7 +23,7 @@
 * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-namespace CnabPHP\Resources\Generico\remessa\cnab240;
+namespace CnabPHP\Resources\Generico\Remessa\Cnab240;
 use CnabPHP\RegistroRemessaAbstract;
 use CnabPHP\RemessaAbstract;
 use Exception;
@@ -33,7 +33,7 @@ class Generico1 extends RegistroRemessaAbstract
     protected $counter = 0;
     protected function set_codigo_lote($value)
     { 
-        $this->data['codigo_lote'] = RemessaAbstract::$loteCounter;
+        $this->data['codigo_lote'] = RemessaAbstract::$loteContador;
     }
 
     public function set_tipo_servico($value)
@@ -51,7 +51,7 @@ class Generico1 extends RegistroRemessaAbstract
 
     protected function set_tipo_inscricao($value)
     {
-        $value = $value ? $value : RemessaAbstract::$entryData['tipo_inscricao'];
+        $value = $value ? $value : RemessaAbstract::$dados['tipo_inscricao'];
         if($value==1 || $value==2)
         {
             $this->data['tipo_inscricao'] =  $value;
@@ -62,35 +62,35 @@ class Generico1 extends RegistroRemessaAbstract
 
     protected function set_numero_inscricao($value)
     {
-        $this->data['numero_inscricao'] = $value == '' ? str_ireplace(array('.','/','-'),array(''),RemessaAbstract::$entryData['numero_inscricao']):str_ireplace(array('.','/','-'),array(''),$value);
+        $this->data['numero_inscricao'] = $value == '' ? str_ireplace(array('.','/','-'),array(''),RemessaAbstract::$dados['numero_inscricao']):str_ireplace(array('.','/','-'),array(''),$value);
     }
 
     protected function set_codigo_beneficiario($value)
     {
-        $this->data['codigo_beneficiario'] = $value == '' ?   RemessaAbstract::$entryData['codigo_beneficiario'] : $value;
+        $this->data['codigo_beneficiario'] = $value == '' ?   RemessaAbstract::$dados['codigo_beneficiario'] : $value;
     }
     protected function set_agencia($value)
     {
-        $this->data['agencia'] = $value == '' ?   RemessaAbstract::$entryData['agencia'] : $value;
+        $this->data['agencia'] = $value == '' ?   RemessaAbstract::$dados['agencia'] : $value;
     }
 
     protected function set_agencia_dv($value)
     {
-        $this->data['agencia_dv'] = $value == '' ?   RemessaAbstract::$entryData['agencia_dv'] : $value;
+        $this->data['agencia_dv'] = $value == '' ?   RemessaAbstract::$dados['agencia_dv'] : $value;
     }
 
     protected function set_codigo_convenio($value)
     {
-        $this->data['codigo_convenio'] =  RemessaAbstract::$entryData['codigo_beneficiario'];
+        $this->data['codigo_convenio'] =  RemessaAbstract::$dados['codigo_beneficiario'];
     }
 
     protected function set_nome_empresa($value)
     {
-        $this->data['nome_empresa'] = $value == '' ? RemessaAbstract::$entryData['nome_empresa'] : $value;
+        $this->data['nome_empresa'] = $value == '' ? RemessaAbstract::$dados['nome_empresa'] : $value;
     }
-    protected function set_numero_remessa($value)
+    protected function set_numero_Remessa($value)
     {
-        $this->data['numero_remessa'] =  $value == '' ? RemessaAbstract::$entryData['numero_sequencial_arquivo'] : $value;
+        $this->data['numero_Remessa'] =  $value == '' ? RemessaAbstract::$dados['numero_sequencial_arquivo'] : $value;
     }
 
     protected function set_data_gravacao($value)
@@ -104,11 +104,11 @@ class Generico1 extends RegistroRemessaAbstract
     }
     public function inserirDetalhe($data)
     {
-        $class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$layout.'\Registro3P';
+        $class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\Remessa\\'.RemessaAbstract::$leiaute.'\Registro3P';
         $this->children[] = new $class($data);
     }
 
-    public function getText(){
+    public function getArquivo(){
         $retorno = '';
         $dataReg5 = array();
         $dataReg5['qtd_titulos_simples']   = '0';
@@ -143,11 +143,11 @@ class Generico1 extends RegistroRemessaAbstract
                     $dataReg5['qtd_titulos_descontada'] ++;   
                     $dataReg5['vlr_titulos_descontada'] += $child->getUnformated('valor'); 
                 }
-                $child->getText();
+                $child->getArquivo();
             }
-            $class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$layout.'\Registro5';
+            $class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\Remessa\\'.RemessaAbstract::$leiaute.'\Registro5';
             $registro5 = new $class($dataReg5);
-            $registro5->getText();
+            $registro5->getArquivo();
         }
     }
 }

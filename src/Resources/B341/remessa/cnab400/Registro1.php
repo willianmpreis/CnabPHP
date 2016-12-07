@@ -255,7 +255,7 @@ class Registro1 extends Generico1
     {
         if( isset($data['data_multa']))
         {
-            $class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$layout.'\Registro2';
+            $class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$leiaute.'\Registro2';
             $this->children[] = new $class($data);
         }
     } 

@@ -1,6 +1,6 @@
 <?php
 /*
-* CnabPHP - Gera��o de arquivos de remessa e retorno em PHP
+* CnabPHP - Geração de arquivos de Remessa e retorno em PHP
 *
 * LICENSE: The MIT License (MIT)
 *
@@ -75,9 +75,9 @@ class Generico1 extends RegistroRetornoAbstract
 	{
 		$this->data['nome_empresa'] = $value == '' ? RetornoAbstract::$entryData['nome_empresa'] : $value;
 	}
-	protected function set_numero_remessa($value)
+	protected function set_numero_Remessa($value)
 	{
-		$this->data['numero_remessa'] =  $value == '' ? RetornoAbstract::$entryData['numero_sequencial_arquivo'] : $value;
+		$this->data['numero_Remessa'] =  $value == '' ? RetornoAbstract::$entryData['numero_sequencial_arquivo'] : $value;
 	}
 	protected function set_data_gravacao($value)
 	{
@@ -89,10 +89,10 @@ class Generico1 extends RegistroRetornoAbstract
 	}
 	public function inserirDetalhe($data)
 	{
-		$class = 'CnabPHP\Resources\\'.RetornoAbstract::$banco.'\remessa\\'.RetornoAbstract::$layout.'\Registro3P';
+		$class = 'CnabPHP\Resources\\'.RetornoAbstract::$banco.'\Remessa\\'.RetornoAbstract::$layout.'\Registro3P';
 		$this->children[] = new $class($data);
 	}
-	public function getText(){
+	public function getArquivo(){
 		$retorno = '';
 		$dataReg5 = array();
 		$dataReg5['qtd_titulos_simples']   = '0';
@@ -127,11 +127,11 @@ class Generico1 extends RegistroRetornoAbstract
 					$dataReg5['qtd_titulos_descontada'] ++;   
 					$dataReg5['vlr_titulos_descontada'] += $child->getUnformated('valor'); 
 				}
-				$child->getText();
+				$child->getArquivo();
 			}
-			$class = 'CnabPHP\Resources\\'.RetornoAbstract::$banco.'\remessa\\'.RetornoAbstract::$layout.'\Registro5';
+			$class = 'CnabPHP\Resources\\'.RetornoAbstract::$banco.'\Remessa\\'.RetornoAbstract::$layout.'\Registro5';
 			$registro5 = new $class($dataReg5);
-			$registro5->getText();
+			$registro5->getArquivo();
 		}
 	}
 }
