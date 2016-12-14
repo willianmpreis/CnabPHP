@@ -71,7 +71,7 @@ abstract class RegistroRemessaAbstract
             call_user_func([$this, 'set_' . $key], $value);
         } else {
             $metaData = (isset($this->meta[$key])) ? $this->meta[$key] : null;
-            if (($value == "" || $value === NULL) && $metaData[$key]['default'] != "") {
+            if (($value == "" || $value === NULL) && isset($metaData[$key]) && $metaData[$key]['default'] != "") {
                 $this->data[$key] = $metaData[$key]['default'];
             } else {
                 $this->data[$key] = $value;
