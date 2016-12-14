@@ -11,7 +11,7 @@ abstract class RemessaAbstract
     /**
      * @var array
      */
-    const BANCOS = [
+    public static $BANCOS = [
         '104' => 'CaixaEconomicaFederal',
         '237' => 'Bradesco',
         '341' => 'Itau',
@@ -54,7 +54,7 @@ abstract class RemessaAbstract
      */
     public function __construct($banco, $leiaute, $dados)
     {
-        self::$banco = self::BANCOS[$banco];
+        self::$banco = SELF::$BANCOS[$banco];
         self::$leiaute = $leiaute;
         self::$dados = $dados;
 
@@ -82,6 +82,7 @@ abstract class RemessaAbstract
     {
         //$class = '\CnabPHP\Resources\\' . self::$banco . '\remessa\\' . self::$layout . '\Registro1';
         $class = $this->register(self::$banco, self::$leiaute, 1);
+
         self::adicionarFilho(new $class($data));
         //self::$counter++;
     }
