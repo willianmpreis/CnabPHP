@@ -60,7 +60,7 @@ class Registro0 extends Generico0
             'required' => true
         ],
         'literal_servico' => [
-            'tamanho' => 9,
+            'tamanho' => 8,
             'default' => "COBRANÇA",
             'tipo' => 'alfa2',
             'required' => true
