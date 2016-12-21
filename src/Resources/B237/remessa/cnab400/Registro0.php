@@ -24,9 +24,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace CnabPHP\Resources\b237\remessa\cnab400;
+namespace CnabPHP\Resources\b237\Remessa\cnab400;
 
-use CnabPHP\Resources\Generico\remessa\cnab400\Generico0;
+use CnabPHP\Resources\Generico\Remessa\cnab400\Generico0;
 
 class Registro0 extends Generico0
 {
