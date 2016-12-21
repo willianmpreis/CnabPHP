@@ -53,7 +53,7 @@ class Generico1 extends RegistroRemessaAbstract
     }
     protected function set_agencia_dv($value)
     {
-        $this->data['agencia'] = RemessaAbstract::$dados['agencia_dv'];
+        $this->data['agencia_dv'] = RemessaAbstract::$dados['agencia_dv'];
     }
 
     protected function set_agencia_cobradora($value)
