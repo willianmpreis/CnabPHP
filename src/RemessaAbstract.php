@@ -54,7 +54,7 @@ abstract class RemessaAbstract
      */
     public function __construct($banco, $leiaute, $dados)
     {
-        self::$banco = SELF::$BANCOS[$banco];
+        self::$banco = self::$BANCOS[$banco];
         self::$leiaute = $leiaute;
         self::$dados = $dados;
 

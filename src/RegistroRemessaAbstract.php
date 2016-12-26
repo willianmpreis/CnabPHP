@@ -210,6 +210,7 @@ abstract class RegistroRemessaAbstract
             /** @noinspection PhpVariableVariableInspection */
             $retorno .= $this->$key;
         }
+
         RemessaAbstract::$retorno[] = $retorno;
         if ($this->children) {
             foreach ($this->children as $child) {
