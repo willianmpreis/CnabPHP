@@ -116,7 +116,7 @@ abstract class RegistroRemessaAbstract
                     return str_pad($retorno, $metaData['tamanho'], '0', STR_PAD_LEFT);
                     break;
                 case 'alfa':
-                    $retorno = ($this->data[$prop]) ? $this->prepareText($this->data[$prop]) : '';
+                    $retorno = ($this->data[$prop] || $this->data[$prop] === '0'  || $this->data[$prop] === 0) ? $this->prepareText($this->data[$prop]) : '';
                     return str_pad(mb_substr($retorno,0,$metaData['tamanho'],"UTF-8"),$metaData['tamanho'],' ',STR_PAD_RIGHT);
                     break;
                 case 'alfa2':
