@@ -129,7 +129,12 @@ abstract class RemessaAbstract
      */
     public static function getLote($index)
     {
-        return self::$filhos[$index];
+        if (isset(self::$filhos[$index])) {
+            return self::$filhos[$index];
+        } else if (isset(self::$filhos[$index - 1])) {
+            return self::$filhos[$index - 1];
+        }
+        return null;
     }
 
     /**

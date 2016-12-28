@@ -31,66 +31,68 @@ use Exception;
 class Generico1 extends RegistroRemessaAbstract
 {
     protected $counter = 0;
+
     protected function set_codigo_lote($value)
-    { 
+    {
         $this->data['codigo_lote'] = RemessaAbstract::$loteContador;
     }
 
     public function set_tipo_servico($value)
     {
-        if($value=='S'){
+        if ($value == 'S') {
             $this->data['tipo_servico'] = 1;
-        }elseif($value=='N'){
-            $this->data['tipo_servico'] = 2; 
-        }elseif((int)$value<=2){
-            $this->data['tipo_servico'] = $value; 
-        }else{
-            throw new Exception("O tipo de servico deve ser 1 ou S para Registrada ou 2 ou N para Sem Registro, o valor informado foi:".$value);
+        } elseif ($value == 'N') {
+            $this->data['tipo_servico'] = 2;
+        } elseif ((int)$value <= 2) {
+            $this->data['tipo_servico'] = $value;
+        } else {
+            throw new Exception("O tipo de servico deve ser 1 ou S para Registrada ou 2 ou N para Sem Registro, o valor informado foi:" . $value);
         }
-    }	
+    }
 
     protected function set_tipo_inscricao($value)
     {
         $value = $value ? $value : RemessaAbstract::$dados['tipo_inscricao'];
-        if($value==1 || $value==2)
-        {
-            $this->data['tipo_inscricao'] =  $value;
-        }else{
-            throw new Exception("O tipo de incri��o deve ser 1  para CPF e 2 para CNPJ, o valor informado foi:".$value);       
+        if ($value == 1 || $value == 2) {
+            $this->data['tipo_inscricao'] = $value;
+        } else {
+            throw new Exception("O tipo de incri��o deve ser 1  para CPF e 2 para CNPJ, o valor informado foi:" . $value);
         }
     }
 
     protected function set_numero_inscricao($value)
     {
-        $this->data['numero_inscricao'] = $value == '' ? str_ireplace(array('.','/','-'),array(''),RemessaAbstract::$dados['numero_inscricao']):str_ireplace(array('.','/','-'),array(''),$value);
+        $this->data['numero_inscricao'] = $value == '' ? str_ireplace(array('.', '/', '-'), array(''), RemessaAbstract::$dados['numero_inscricao']) : str_ireplace(array('.', '/', '-'), array(''), $value);
     }
 
     protected function set_codigo_beneficiario($value)
     {
-        $this->data['codigo_beneficiario'] = $value == '' ?   RemessaAbstract::$dados['codigo_beneficiario'] : $value;
+        $this->data['codigo_beneficiario'] = $value == '' ? RemessaAbstract::$dados['codigo_beneficiario'] : $value;
     }
+
     protected function set_agencia($value)
     {
-        $this->data['agencia'] = $value == '' ?   RemessaAbstract::$dados['agencia'] : $value;
+        $this->data['agencia'] = $value == '' ? RemessaAbstract::$dados['agencia'] : $value;
     }
 
     protected function set_agencia_dv($value)
     {
-        $this->data['agencia_dv'] = $value == '' ?   RemessaAbstract::$dados['agencia_dv'] : $value;
+        $this->data['agencia_dv'] = $value == '' ? RemessaAbstract::$dados['agencia_dv'] : $value;
     }
 
     protected function set_codigo_convenio($value)
     {
-        $this->data['codigo_convenio'] =  RemessaAbstract::$dados['codigo_beneficiario'];
+        $this->data['codigo_convenio'] = RemessaAbstract::$dados['codigo_beneficiario'];
     }
 
     protected function set_nome_empresa($value)
     {
         $this->data['nome_empresa'] = $value == '' ? RemessaAbstract::$dados['nome_empresa'] : $value;
     }
-    protected function set_numero_Remessa($value)
+
+    protected function set_numero_remessa($value)
     {
-        $this->data['numero_Remessa'] =  $value == '' ? RemessaAbstract::$dados['numero_sequencial_arquivo'] : $value;
+        $this->data['numero_remessa'] = $value == '' ? RemessaAbstract::$dados['numero_sequencial_arquivo'] : $value;
     }
 
     protected function set_data_gravacao($value)
@@ -98,57 +100,59 @@ class Generico1 extends RegistroRemessaAbstract
         $this->data['data_gravacao'] = date('Y-m-d');
     }
 
-    public function get_counter(){
+    public function get_counter()
+    {
         $this->counter++;
         return $this->counter;
     }
-    public function inserirDetalhe($data)
+
+    /**
+     * @param $data
+     */
+    public function adicionarDetalhe($data)
     {
-        $class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\Remessa\\'.RemessaAbstract::$leiaute.'\Registro3P';
+        $class = 'CnabPHP\Resources\\' . RemessaAbstract::$banco . '\Remessa\\' . RemessaAbstract::$leiaute . '\Registro3P';
         $this->children[] = new $class($data);
     }
 
-    public function getArquivo(){
+    public function getArquivo()
+    {
         $retorno = '';
         $dataReg5 = array();
-        $dataReg5['qtd_titulos_simples']   = '0';
-        $dataReg5['qtd_titulos_caucionada']= '0';
-        $dataReg5['qtd_titulos_descontada']= '0';
-        $dataReg5['vrl_titulos_simples']   = '0.00';
-        $dataReg5['vlr_titulos_caucionada']= '0.00';
-        $dataReg5['vlr_titulos_descontada']= '0.00';
+        $dataReg5['qtd_titulos_simples'] = '0';
+        $dataReg5['qtd_titulos_caucionada'] = '0';
+        $dataReg5['qtd_titulos_descontada'] = '0';
+        $dataReg5['vrl_titulos_simples'] = '0.00';
+        $dataReg5['vlr_titulos_caucionada'] = '0.00';
+        $dataReg5['vlr_titulos_descontada'] = '0.00';
 
-        foreach($this->meta as $key=>$value){
+        foreach ($this->meta as $key => $value) {
             $retorno .= $this->$key;
         }
         RemessaAbstract::$retorno[] = $retorno;
-        if ($this->children)
-        {
+        if ($this->children) {
             // percorre todos objetos filhos
-            foreach ($this->children as $child)
-            {
-                if($child->codigo_carteira==1)
-                {
-                    $dataReg5['qtd_titulos_simples']++;   
+            foreach ($this->children as $child) {
+                if ($child->codigo_carteira == 1) {
+                    $dataReg5['qtd_titulos_simples']++;
                     $dataReg5['vrl_titulos_simples'] += $child->getUnformated('valor');
                 }
-                if($child->codigo_carteira==3)
-                {
+                if ($child->codigo_carteira == 3) {
                     $dataReg5['qtd_titulos_caucionada']++;
                     $dataReg5['vlr_titulos_caucionada'] += $child->getUnformated('valor');
 
                 }
-                if($child->codigo_carteira==4)
-                {
-                    $dataReg5['qtd_titulos_descontada'] ++;   
-                    $dataReg5['vlr_titulos_descontada'] += $child->getUnformated('valor'); 
+                if ($child->codigo_carteira == 4) {
+                    $dataReg5['qtd_titulos_descontada']++;
+                    $dataReg5['vlr_titulos_descontada'] += $child->getUnformated('valor');
                 }
                 $child->getArquivo();
             }
-            $class = 'CnabPHP\Resources\\'.RemessaAbstract::$banco.'\Remessa\\'.RemessaAbstract::$leiaute.'\Registro5';
+            $class = 'CnabPHP\Resources\\' . RemessaAbstract::$banco . '\Remessa\\' . RemessaAbstract::$leiaute . '\Registro5';
             $registro5 = new $class($dataReg5);
             $registro5->getArquivo();
         }
     }
 }
+
 ?>

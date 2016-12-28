@@ -75,9 +75,9 @@ class Generico1 extends RegistroRetornoAbstract
 	{
 		$this->data['nome_empresa'] = $value == '' ? RetornoAbstract::$entryData['nome_empresa'] : $value;
 	}
-	protected function set_numero_Remessa($value)
+	protected function set_numero_remessa($value)
 	{
-		$this->data['numero_Remessa'] =  $value == '' ? RetornoAbstract::$entryData['numero_sequencial_arquivo'] : $value;
+		$this->data['numero_remessa'] =  $value == '' ? RetornoAbstract::$entryData['numero_sequencial_arquivo'] : $value;
 	}
 	protected function set_data_gravacao($value)
 	{
