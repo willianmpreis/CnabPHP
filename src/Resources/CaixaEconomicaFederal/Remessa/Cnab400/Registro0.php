@@ -1,6 +1,6 @@
 <?php
 /*
- * CnabPHP - GeraÃ§Ã£o de arquivos de Remessa e retorno em PHP
+ * CnabPHP - Geração de arquivos de Remessa e retorno em PHP
  *
  * LICENSE: The MIT License (MIT)
  *
@@ -49,7 +49,7 @@ class Registro0 extends Generico0
         ],
         'literal_Remessa' => [
             'tamanho' => 7,
-            'default' => 'Remessa',
+            'default' => 'REMESSA',
             'tipo' => 'alfa',
             'required' => true
         ],
@@ -60,45 +60,21 @@ class Registro0 extends Generico0
             'required' => true
         ],
         'literal_servico' => [
-            'tamanho' => 8,
+            'tamanho' => 15,
             'default' => "COBRANÇA",
             'tipo' => 'alfa2',
             'required' => true
         ],
-        'filler0' => [
-            'tamanho' => 7,
+        'codigo_empresa' => [
+            'tamanho' => 16,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
         ],
-        'agencia' => [
+        'filler0' => [
             'tamanho' => 4,
-            'default' => '',
-            'tipo' => 'int',
-            'required' => true
-        ],
-        'agencia_dv' => [
-            'tamanho' => 1,
-            'default' => '',
+            'default' => ' ',
             'tipo' => 'alfa',
-            'required' => true
-        ],
-        'codigo_beneficiario' => [
-            'tamanho' => 8,
-            'default' => '',
-            'tipo' => 'int',
-            'required' => true
-        ],
-        'codigo_beneficiario_dv' => [
-            'tamanho' => 1,
-            'default' => '',
-            'tipo' => 'alfa',
-            'required' => true
-        ],
-        'numero_convenio' => [
-            'tamanho' => 6,
-            'default' => '0',
-            'tipo' => 'int',
             'required' => true
         ],
         'nome_empresa' => [
@@ -109,37 +85,37 @@ class Registro0 extends Generico0
         ],
         'codigo_banco' => [
             'tamanho' => 3,
-            'default' => '756',
+            'default' => '104',
             'tipo' => 'int',
             'required' => true
         ],
         'nome_banco' => [
             'tamanho' => 15,
-            'default' => 'BANCOOBCED',
+            'default' => 'C ECON FEDERAL',
             'tipo' => 'alfa',
             'required' => true
         ],
         'data_gravacao' => [
             'tamanho' => 6,
-            'default' => '',// nao informar a data na instanciaÃ§Ã£o - gerada dinamicamente
+            'default' => '',// nao informar a data na instanciação - gerada dinamicamente
             'tipo' => 'date',
             'required' => true
         ],
-        'numero_sequencial_arquivo' => [
-            'tamanho' => 7,
-            'default' => '1',
-            'tipo' => 'int',
-            'required' => true
-        ],
         'filler3' => [
-            'tamanho' => 287,
+            'tamanho' => 289,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
         ],
+        'numero_sequencial_arquivo' => [
+            'tamanho' => 5,
+            'default' => '1',
+            'tipo' => 'int',
+            'required' => true
+        ],
         'numero_sequencial' => [
             'tamanho' => 6,
-            'default' => '1',
+            'default' => '000001',
             'tipo' => 'int',
             'required' => true
         ],
