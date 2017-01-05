@@ -50,36 +50,22 @@ class Registro1 extends Generico1
             'required' => true
         ],
         'codigo_empresa' => [
-
-        ],
-        'agencia' => [
-            'tamanho' => 4,
+            'tamanho' => 16,
             'default' => '',
             'tipo' => 'int',
             'required' => true
         ],
-        'agencia_dv' => [
-            'tamanho' => 1,
-            'default' => '0',
-            'tipo' => 'int',
+        'filler0' => [
+            'tamanho' => 2,
+            'default' => ' ',
+            'tipo' => 'alfa',
             'required' => true
         ],
-        'conta' => [
-            'tamanho' => 8,
+        'taxa_permanencia' => [
+            'tamanho' => 2,
+            'precision' => 4,
             'default' => '',
-            'tipo' => 'int',
-            'required' => true
-        ],
-        'conta_dv' => [
-            'tamanho' => 1,
-            'default' => '',
-            'tipo' => 'int',
-            'required' => true,
-        ],
-        'numero_convenio' => [
-            'tamanho' => 6,
-            'default' => '0',
-            'tipo' => 'int',
+            'tipo' => 'decimal',
             'required' => true
         ],
         'seu_numero' => [
@@ -92,100 +78,35 @@ class Registro1 extends Generico1
             'tamanho' => 11,
             'default' => '',
             'tipo' => 'int',
-            'required' => true],
-        'nosso_numero_dv' => [
-            'tamanho' => 1,
-            'default' => '0', // colocado valor inicial 0 para que quando o modulo 11 retorne 0 nao gere bug
-            'tipo' => 'int',
             'required' => true
         ],
-        'numero_parcela' => [            //34.3P
+        'filler1' => [
+            'tamanho' => 3,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        ],
+        'mensagem_bloqueto' => [
+            'tamanho' => 30,
+            'default' => '',
+            'tipo' => 'alfa',
+            'required' => true
+        ],
+        'cod_carteira' => [
             'tamanho' => 2,
             'default' => '1',
             'tipo' => 'int',
             'required' => true
         ],
-        'grupo_valor' => [            //34.3P
-            'tamanho' => 2,
-            'default' => '0',
-            'tipo' => 'int',
-            'required' => true
-        ],
-        'filler3' => [
-            'tamanho' => 3,
-            'default' => ' ',
-            'tipo' => 'alfa',
-            'required' => true
-        ],
-        'indicador_mens_aval' => [
-            'tamanho' => 1,
-            'default' => ' ',
-            'tipo' => 'alfa',
-            'required' => true
-        ],
-        'prefixo_titulo' => [
-            'tamanho' => 3,
-            'default' => ' ',
-            'tipo' => 'alfa',
-            'required' => true
-        ],
-        'carteira_banco' => [      //13.3P
-            'tamanho' => 3,
-            'default' => '0',
-            'tipo' => 'int',
-            'required' => true
-        ],
-        'conta_caucao' => [      //13.3P
-            'tamanho' => 1,
-            'default' => '0',
-            'tipo' => 'int',
-            'required' => true
-        ],
-        'numero_contrato' => [      //13.3P
-            'tamanho' => 5,
-            'default' => '0',
-            'tipo' => 'int',
-            'required' => true
-        ],
-        'numero_contrato_dv' => [      //13.3P
-            'tamanho' => 1,
-            'default' => '0',
-            'tipo' => 'alfa',
-            'required' => true
-        ],
-        'numero_bordero' => [      //13.3P
-            'tamanho' => 6,
-            'default' => '0',
-            'tipo' => 'int',
-            'required' => true
-        ],
-        'filler32' => [
-            'tamanho' => 4,
-            'default' => ' ',
-            'tipo' => 'alfa',
-            'required' => true
-        ],
-        'emissao_boleto' => [
-            'tamanho' => 1,
-            'default' => '2',
-            'tipo' => 'int',
-            'required' => true
-        ],
-        'cod_carteira' => [      //13.3P
-            'tamanho' => 2,
-            'default' => '1',
-            'tipo' => 'int',
-            'required' => true
-        ],
-        'codigo_movimento' => [      // codigo da ocorrencia no manual itau
+        'codigo_movimento' => [ // codigo da ocorrencia no manual da caixa
             'tamanho' => 2,
             'default' => '01', // entrada de titulo
             'tipo' => 'int',
             'required' => true
         ],
-        'numero_documento' => [      // codigo da ocorrencia no manual itau
+        'numero_documento' => [
             'tamanho' => 10,
-            'default' => ' ', // entrada de titulo
+            'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
         ],
@@ -196,7 +117,7 @@ class Registro1 extends Generico1
             'required' => true
         ],
         'valor' => [                 //21.3P
-            'tamanho' => 11,
+            'tamanho' => 13,
             'default' => '',
             'tipo' => 'decimal',
             'precision' => 2,
@@ -204,20 +125,14 @@ class Registro1 extends Generico1
         ],
         'codigo_banco' => [
             'tamanho' => 3,
-            'default' => '756',
+            'default' => '104',
             'tipo' => 'int',
             'required' => true
         ],
         'agencia_cobradora' => [    //22.3P
-            'tamanho' => 4,
+            'tamanho' => 5,
             'default' => '0',
             'tipo' => 'int',
-            'required' => true
-        ],
-        'agencia_cobradora_dv' => [    //22.3P
-            'tamanho' => 1,
-            'default' => '0',
-            'tipo' => 'alfa',
             'required' => true
         ],
         'especie_titulo' => [    //24.3P
@@ -228,8 +143,8 @@ class Registro1 extends Generico1
         ],
         'aceite' => [            //25.3P
             'tamanho' => 1,
-            'default' => '0',
-            'tipo' => 'int',
+            'default' => 'A',
+            'tipo' => 'alfa',
             'required' => true
         ],
         'data_emissao' => [            //26.3P
@@ -244,30 +159,17 @@ class Registro1 extends Generico1
             'tipo' => 'int',
             'required' => true
         ],
-        'cod_instrucao2' => [    //24.3P
+        'cod_instrucao2' => [
             'tamanho' => 2,
             'default' => '0',
             'tipo' => 'int',
             'required' => true
         ],
-        'taxa_juros' => [            //29.3P
-            'tamanho' => 2,
-            'default' => '',
+        'vlr_juros' => [
+            'tamanho' => 13,
+            'default' => '0',
             'tipo' => 'decimal',
-            'precision' => 4,
-            'required' => true
-        ],
-        'taxa_multa' => [            //29.3P
-            'tamanho' => 2,
-            'default' => '',
-            'tipo' => 'decimal',
-            'precision' => 4,
-            'required' => true
-        ],
-        'tipo_distribuicao' => [
-            'tamanho' => 1,
-            'default' => '2',
-            'tipo' => 'int',
+            'precision' => 2,
             'required' => true
         ],
         'data_desconto' => [            //31.3P
@@ -277,27 +179,21 @@ class Registro1 extends Generico1
             'required' => true
         ],
         'vlr_desconto' => [            //32.3P
-            'tamanho' => 11,
+            'tamanho' => 13,
             'default' => '0',
             'tipo' => 'decimal',
             'precision' => 2,
             'required' => true
         ],
-        'codigo_moeda' => [            //40.3P
-            'tamanho' => 1,
-            'default' => '9',
-            'tipo' => 'int',
-            'required' => true
-        ],
         'vlr_IOF' => [            //33.3P
-            'tamanho' => 10,
+            'tamanho' => 13,
             'default' => '0',
             'tipo' => 'decimal',
             'precision' => 2,
             'required' => true
         ],
         'vlr_abatimento' => [            //34.3P
-            'tamanho' => 11,
+            'tamanho' => 13,
             'default' => '0',
             'tipo' => 'decimal',
             'precision' => 2,
@@ -315,46 +211,65 @@ class Registro1 extends Generico1
             'tipo' => 'int',
             'required' => true
         ],
-        'nome_pagador' => [       //10.3Q
+        'nome_pagador' => [
             'tamanho' => 40,
             'default' => '',
             'tipo' => 'alfa',
             'required' => true
         ],
-        'endereco_pagador' => [               // 11.3Q
-            'tamanho' => 37,
+        'endereco_pagador' => [
+            'tamanho' => 40,
             'default' => '',
             'tipo' => 'alfa',
             'required' => true
         ],
-        'bairro_pagador' => [               //12.3Q
-            'tamanho' => 15,
+        'bairro_pagador' => [
+            'tamanho' => 12,
             'default' => '',
             'tipo' => 'alfa',
             'required' => true
         ],
-        'cep_pagador' => [      //13.3Q
+        'cep_pagador' => [
             'tamanho' => 8,
             'default' => '',
             'tipo' => 'int',
             'required' => true
         ],
-        'cidade_pagador' => [   //15.3Q
+        'cidade_pagador' => [
             'tamanho' => 15,
             'default' => '',
             'tipo' => 'alfa',
             'required' => true
         ],
-        'uf_pagador' => [      //16.3Q
+        'uf_pagador' => [
             'tamanho' => 2,
-            'default' => '',  // combranÃ§a com registro
+            'default' => '',
             'tipo' => 'alfa',
             'required' => true
         ],
-        'nome_avalista_mensagem' => [        //18.3Q
-            'tamanho' => 40,
+        'data_multa' => [
+            'tamanho' => 6,
+            'default' => '0',
+            'tipo' => 'date',
+            'required' => true
+        ],
+        'vlr_multa' => [
+            'tamanho' => 10,
+            'default' => '0',
+            'tipo' => 'decimal',
+            'precision' => 2,
+            'required' => true
+        ],
+        'nome_avalista_mensagem' => [
+            'tamanho' => 22,
             'default' => ' ',
             'tipo' => 'alfa',
+            'required' => true
+        ],
+        'cod_instrucao3' => [
+            'tamanho' => 2,
+            'default' => '0',
+            'tipo' => 'int',
             'required' => true
         ],
         'prazo_protesto' => [
@@ -363,13 +278,13 @@ class Registro1 extends Generico1
             'tipo' => 'alfa',
             'required' => true
         ],
-        'filler4' => [            //31.3P
+        'codigo_moeda' => [
             'tamanho' => 1,
-            'default' => ' ',
-            'tipo' => 'alfa',
+            'default' => '9',
+            'tipo' => 'int',
             'required' => true
         ],
-        'numero_registro' => [       // 4.3R
+        'numero_registro' => [
             'tamanho' => 6,
             'default' => '0',
             'tipo' => 'int',
