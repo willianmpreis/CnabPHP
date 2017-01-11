@@ -88,6 +88,18 @@ abstract class RemessaAbstract
     }
 
     /**
+     * @param $data
+     */
+    public function adicionarDetalheMensagem($data)
+    {
+        //$class = '\CnabPHP\Resources\\' . self::$banco . '\remessa\\' . self::$layout . '\Registro1';
+        $class = $this->register(self::$banco, self::$leiaute, 2);
+
+        self::adicionarFilho(new $class($data));
+        //self::$counter++;
+    }
+
+    /**
      * @param $leiaute
      */
     public function trocarLeiaute($leiaute)

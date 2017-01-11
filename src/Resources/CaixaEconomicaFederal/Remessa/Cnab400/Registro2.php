@@ -23,46 +23,29 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 namespace CnabPHP\Resources\CaixaEconomicaFederal\Remessa\Cnab400;
 
-use CnabPHP\Resources\Generico\Remessa\Cnab400\Generico0;
+use CnabPHP\Resources\Generico\Remessa\Cnab400\Generico2;
 
-/**
- * Class Registro0
- * @package CnabPHP\Resources\CaixaEconomicaFederal\Remessa\Cnab400
- */
-class Registro0 extends Generico0
+class Registro2 extends Generico2
 {
     protected $meta = [
         'tipo_registro' => [
             'tamanho' => 1,
-            'default' => '0',
+            'default' => '2',
             'tipo' => 'int',
             'required' => true
         ],
-        'operacao' => [  //Código da Remessa na Caixa
-            'tamanho' => 1,
-            'default' => '1',
-            'tipo' => 'int',
-            'required' => true
-        ],
-        'literal_Remessa' => [
-            'tamanho' => 7,
-            'default' => 'REMESSA', //utilizar REM.TST durante a fase de testes
-            'tipo' => 'alfa',
-            'required' => true
-        ],
-        'tipo_servico' => [
+        'tipo_inscricao_empresa' => [
             'tamanho' => 2,
-            'default' => '01',
+            'default' => '',
             'tipo' => 'int',
             'required' => true
         ],
-        'literal_servico' => [
-            'tamanho' => 15,
-            'default' => "COBRANCA",
-            'tipo' => 'alfa2',
+        'numero_inscricao_empresa' => [
+            'tamanho' => 14,
+            'default' => '',
+            'tipo' => 'int',
             'required' => true
         ],
         'agencia' => [
@@ -78,13 +61,37 @@ class Registro0 extends Generico0
             'required' => true
         ],
         'filler0' => [
-            'tamanho' => 10,
+            'tamanho' => 4,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
         ],
-        'nome_empresa' => [
-            'tamanho' => 30,
+        'nosso_numero' => [
+            'tamanho' => 11,
+            'default' => '',
+            'tipo' => 'int',
+            'required' => true
+        ],
+        'filler1' => [
+            'tamanho' => 33,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        ],
+        'cod_carteira' => [
+            'tamanho' => 2,
+            'default' => '1',
+            'tipo' => 'int',
+            'required' => true
+        ],
+        'codigo_movimento' => [ // codigo da ocorrencia no manual da caixa
+            'tamanho' => 2,
+            'default' => '01', // entrada de titulo
+            'tipo' => 'int',
+            'required' => true
+        ],
+        'filler2' => [
+            'tamanho' => 29,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
@@ -95,35 +102,59 @@ class Registro0 extends Generico0
             'tipo' => 'int',
             'required' => true
         ],
-        'nome_banco' => [
-            'tamanho' => 15,
-            'default' => 'C ECON FEDERAL',
-            'tipo' => 'alfa',
-            'required' => true
-        ],
-        'data_gravacao' => [
-            'tamanho' => 6,
-            'default' => '',// nao informar a data na instanciação - gerada dinamicamente
-            'tipo' => 'date',
-            'required' => true
-        ],
-        'filler1' => [
-            'tamanho' => 289,
+        'mensagem1' => [
+            'tamanho' => 40,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
         ],
-        'numero_sequencial_arquivo' => [
-            'tamanho' => 5,
-            'default' => '1',
-            'tipo' => 'int',
+        'mensagem1' => [
+            'tamanho' => 40,
+            'default' => ' ',
+            'tipo' => 'alfa',
             'required' => true
         ],
-        'numero_sequencial' => [
+        'mensagem2' => [
+            'tamanho' => 40,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        ],
+        'mensagem3' => [
+            'tamanho' => 40,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        ],
+        'mensagem4' => [
+            'tamanho' => 40,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        ],
+        'mensagem5' => [
+            'tamanho' => 40,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        ],
+        'mensagem6' => [
+            'tamanho' => 40,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        ],
+        'filler3' => [
+            'tamanho' => 12,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        ],
+        'numero_registro' => [
             'tamanho' => 6,
-            'default' => '000001',
+            'default' => '0',
             'tipo' => 'int',
             'required' => true
-        ],
+        ]
     ];
 }

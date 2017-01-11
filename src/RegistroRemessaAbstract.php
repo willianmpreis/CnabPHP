@@ -208,6 +208,7 @@ abstract class RegistroRemessaAbstract
         $retorno = '';
         foreach ($this->meta as $key => $value) {
             /** @noinspection PhpVariableVariableInspection */
+            //print "{$key} :  {$this->$key} <br>";
             $retorno .= $this->$key;
         }
 

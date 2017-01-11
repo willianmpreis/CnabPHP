@@ -49,23 +49,34 @@ class Registro1 extends Generico1
             'tipo' => 'int',
             'required' => true
         ],
-        'codigo_empresa' => [
-            'tamanho' => 16,
+        'agencia' => [
+            'tamanho' => 4,
             'default' => '',
             'tipo' => 'int',
             'required' => true
         ],
-        'filler0' => [
-            'tamanho' => 2,
-            'default' => ' ',
-            'tipo' => 'alfa',
+        'codigo_beneficiario' => [
+            'tamanho' => 6,
+            'default' => '',
+            'tipo' => 'int',
+            'required' => true
+        ],
+        'emissao_boleto' => [
+            'tamanho' => 1,
+            'default' => '2',
+            'tipo' => 'int',
+            'required' => true
+        ],
+        'postagem_boleto' => [
+            'tamanho' => 1,
+            'default' => '0',
+            'tipo' => 'int',
             'required' => true
         ],
         'taxa_permanencia' => [
             'tamanho' => 2,
-            'precision' => 4,
-            'default' => '',
-            'tipo' => 'decimal',
+            'default' => '00',
+            'tipo' => 'int',
             'required' => true
         ],
         'seu_numero' => [
@@ -74,10 +85,10 @@ class Registro1 extends Generico1
             'tipo' => 'alfa',
             'required' => true,
         ],
-        'nosso_numero' => [
-            'tamanho' => 11,
-            'default' => '',
-            'tipo' => 'int',
+        'nosso_numero' => [      //Para emissão pelo beneficiário:
+            'tamanho' => 17,     //Obedecer o seguinte formato: CCNNNNNNNNNNNNNNN
+            'default' => '',     // CC = 14 (Para Nosso Número da Cobrança Registrada)
+            'tipo' => 'int',     // CC = 24 (Para Nosso Número da Cobrança Sem Registro)
             'required' => true
         ],
         'filler1' => [
@@ -88,13 +99,13 @@ class Registro1 extends Generico1
         ],
         'mensagem_bloqueto' => [
             'tamanho' => 30,
-            'default' => '',
+            'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
         ],
-        'cod_carteira' => [
-            'tamanho' => 2,
-            'default' => '1',
+        'cod_carteira' => [    //Código da Carteira:
+            'tamanho' => 2,    //'01' = Cobrança Registrada
+            'default' => '1',  //'02' = Cobrança Sem Registro
             'tipo' => 'int',
             'required' => true
         ],
@@ -110,14 +121,14 @@ class Registro1 extends Generico1
             'tipo' => 'alfa',
             'required' => true
         ],
-        'data_vencimento' => [            //20.3
+        'data_vencimento' => [
             'tamanho' => 6,
             'default' => '',
             'tipo' => 'date',
             'required' => true
         ],
-        'valor' => [                 //21.3P
-            'tamanho' => 13,
+        'valor' => [
+            'tamanho' => 11,
             'default' => '',
             'tipo' => 'decimal',
             'precision' => 2,
@@ -129,13 +140,13 @@ class Registro1 extends Generico1
             'tipo' => 'int',
             'required' => true
         ],
-        'agencia_cobradora' => [    //22.3P
+        'agencia_cobradora' => [
             'tamanho' => 5,
             'default' => '0',
             'tipo' => 'int',
             'required' => true
         ],
-        'especie_titulo' => [    //24.3P
+        'especie_titulo' => [
             'tamanho' => 2,
             'default' => '1',
             'tipo' => 'int',
@@ -153,9 +164,9 @@ class Registro1 extends Generico1
             'tipo' => 'date',
             'required' => true
         ],
-        'cod_instrucao1' => [    //24.3P
-            'tamanho' => 2,
-            'default' => '0',
+        'cod_instrucao1' => [    // Código para Protesto / Devolução
+            'tamanho' => 2,      // 01 = Protestar Dias Corridos
+            'default' => '2',    // 02 = Devolver (Não Protestar)
             'tipo' => 'int',
             'required' => true
         ],
@@ -165,43 +176,43 @@ class Registro1 extends Generico1
             'tipo' => 'int',
             'required' => true
         ],
-        'vlr_juros' => [
-            'tamanho' => 13,
+        'vlr_juros_mora' => [  //Juros de Mora por dia (Valor)
+            'tamanho' => 11,
             'default' => '0',
             'tipo' => 'decimal',
             'precision' => 2,
             'required' => true
         ],
-        'data_desconto' => [            //31.3P
+        'data_desconto' => [
             'tamanho' => 6,
             'default' => '0',
             'tipo' => 'date',
             'required' => true
         ],
         'vlr_desconto' => [            //32.3P
-            'tamanho' => 13,
+            'tamanho' => 11,
             'default' => '0',
             'tipo' => 'decimal',
             'precision' => 2,
             'required' => true
         ],
-        'vlr_IOF' => [            //33.3P
-            'tamanho' => 13,
+        'vlr_IOF' => [
+            'tamanho' => 11,
             'default' => '0',
             'tipo' => 'decimal',
             'precision' => 2,
             'required' => true
         ],
-        'vlr_abatimento' => [            //34.3P
-            'tamanho' => 13,
+        'vlr_abatimento' => [
+            'tamanho' => 11,
             'default' => '0',
             'tipo' => 'decimal',
             'precision' => 2,
             'required' => true
         ],
-        'tipo_inscricao' => [
-            'tamanho' => 2,
-            'default' => '',
+        'tipo_inscricao' => [   // Tipo de inscrição da Pessoa ou Empresa
+            'tamanho' => 2,     // 01 = CPF
+            'default' => '',    // 02 = CNPJ
             'tipo' => 'int',
             'required' => true
         ],
@@ -254,7 +265,7 @@ class Registro1 extends Generico1
             'required' => true
         ],
         'vlr_multa' => [
-            'tamanho' => 10,
+            'tamanho' => 8,
             'default' => '0',
             'tipo' => 'decimal',
             'precision' => 2,
@@ -266,21 +277,21 @@ class Registro1 extends Generico1
             'tipo' => 'alfa',
             'required' => true
         ],
-        'cod_instrucao3' => [
-            'tamanho' => 2,
-            'default' => '0',
-            'tipo' => 'int',
+        'cod_instrucao3' => [  // Mensagem
+            'tamanho' => 2,    // 00 = Não imprime mensagem no verso do bloqueto
+            'default' => '0',  // 01 = Utiliza o Registro tipo 2 para envio das mensagens
+            'tipo' => 'int',   // 02 = Imprime mensagem no verso do bloqueto
             'required' => true
         ],
         'prazo_protesto' => [
             'tamanho' => 2,
-            'default' => '0',
-            'tipo' => 'alfa',
+            'default' => '30',
+            'tipo' => 'int',
             'required' => true
         ],
         'codigo_moeda' => [
             'tamanho' => 1,
-            'default' => '9',
+            'default' => '1',
             'tipo' => 'int',
             'required' => true
         ],
@@ -293,59 +304,29 @@ class Registro1 extends Generico1
     ];
 
 
-    protected function set_nosso_numero_dv($value)
+    protected function set_nosso_numero($value)
     {
-        $result = self::mod11($this->data['nosso_numero']);
-        $this->data['nosso_numero_dv'] = $result['digito'];
+        $id_emissao_banco = '1';
+        $id_emissao_beneficiario = '2';
+
+        $carteira_com_registro = '01';
+        $carteira_sem_registro = '02';
+
+        $modalidades = [
+            $id_emissao_banco => [
+                $carteira_com_registro => '11',
+                $carteira_sem_registro => '21'
+            ],
+            $id_emissao_beneficiario => [
+                $carteira_com_registro => '14',
+                $carteira_sem_registro => '24'
+            ]
+        ];
+
+        $nosso_numero = str_pad($value, 15, '0', STR_PAD_LEFT);
+
+        $this->data['nosso_numero'] = $modalidades[$this->emissao_boleto][$this->cod_carteira] . $nosso_numero;
     }
-
-    /**
-     * Calcula e retorna o dÃ­gito verificador usando o algoritmo Modulo 11
-     *
-     * @param string $num
-     * @param int $base
-     * @return array Retorna um array com as chaves 'digito' e 'resto'
-     */
-    protected static function mod11($num)
-    {
-        $codigo_beneficiario = RemessaAbstract::$dados['codigo_beneficiario'] . RemessaAbstract::$dados['codigo_beneficiario_dv']; // NÃºmero do contrato: Ã o mesmo nÃºmero da conta
-        $agencia = RemessaAbstract::$dados['agencia']; // NÃºmero do contrato: Ã o mesmo nÃºmero da conta
-
-        $NossoNumero = str_pad($num, 7, 0, STR_PAD_LEFT); // AtÃ© 7 dÃ­gitos, nÃºmero sequencial iniciado em 1 (Ex.: 1, 2...)
-        $qtde_nosso_numero = strlen($NossoNumero);
-        $sequencia = str_pad($agencia, 4, STR_PAD_LEFT) . str_pad($codigo_beneficiario, 10, 0, STR_PAD_LEFT) . str_pad($NossoNumero, 7, 0, STR_PAD_LEFT);
-        $cont = 0;
-        $calculoDv = 0;
-        for ($num = 0; $num < 21; $num++) {
-            $cont++;
-            if ($cont == 1) {
-                $constante = 3;
-            }
-            if ($cont == 2) {
-                $constante = 1;
-            }
-            if ($cont == 3) {
-                $constante = 9;
-            }
-            if ($cont == 4) {
-                $constante = 7;
-                $cont = 0;
-            }
-            $calculoDv = $calculoDv + (substr($sequencia, $num, 1) * $constante);
-        }
-
-        $Resto = $calculoDv % 11;
-        if ($Resto == 0 || $Resto == 1) {
-            $Dv = 0;
-        } else {
-            $Dv = 11 - $Resto;
-        }
-
-        $result["nosso_numero"] = $NossoNumero;
-        $result["digito"] = $Dv;
-        return $result;
-    }
-
 }
 
 ?>
