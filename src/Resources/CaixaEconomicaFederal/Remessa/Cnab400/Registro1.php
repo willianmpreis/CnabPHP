@@ -285,7 +285,7 @@ class Registro1 extends Generico1
         ],
         'prazo_protesto' => [
             'tamanho' => 2,
-            'default' => '30',
+            'default' => '99',
             'tipo' => 'int',
             'required' => true
         ],

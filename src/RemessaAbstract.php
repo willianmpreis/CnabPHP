@@ -96,7 +96,6 @@ abstract class RemessaAbstract
         $class = $this->register(self::$banco, self::$leiaute, 2);
 
         self::adicionarFilho(new $class($data));
-        //self::$counter++;
     }
 
     /**

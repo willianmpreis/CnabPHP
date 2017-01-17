@@ -108,12 +108,6 @@ class Registro2 extends Generico2
             'tipo' => 'alfa',
             'required' => true
         ],
-        'mensagem1' => [
-            'tamanho' => 40,
-            'default' => ' ',
-            'tipo' => 'alfa',
-            'required' => true
-        ],
         'mensagem2' => [
             'tamanho' => 40,
             'default' => ' ',
