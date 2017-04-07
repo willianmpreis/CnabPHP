@@ -66,13 +66,19 @@ class Registro2 extends Generico2
             'tipo' => 'alfa',
             'required' => true
         ],
+        'filler1' => [
+            'tamanho' => 25,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        ],
         'nosso_numero' => [
-            'tamanho' => 11,
+            'tamanho' => 17,
             'default' => '',
             'tipo' => 'int',
             'required' => true
         ],
-        'filler1' => [
+        'filler2' => [
             'tamanho' => 33,
             'default' => ' ',
             'tipo' => 'alfa',
@@ -90,7 +96,7 @@ class Registro2 extends Generico2
             'tipo' => 'int',
             'required' => true
         ],
-        'filler2' => [
+        'filler3' => [
             'tamanho' => 29,
             'default' => ' ',
             'tipo' => 'alfa',
@@ -138,7 +144,7 @@ class Registro2 extends Generico2
             'tipo' => 'alfa',
             'required' => true
         ],
-        'filler3' => [
+        'filler4' => [
             'tamanho' => 12,
             'default' => ' ',
             'tipo' => 'alfa',
@@ -151,4 +157,28 @@ class Registro2 extends Generico2
             'required' => true
         ]
     ];
+
+    protected function set_nosso_numero($value)
+    {
+        $id_emissao_banco = '1';
+        $id_emissao_beneficiario = '2';
+
+        $carteira_com_registro = '01';
+        $carteira_sem_registro = '02';
+
+        $modalidades = [
+            $id_emissao_banco => [
+                $carteira_com_registro => '11',
+                $carteira_sem_registro => '21'
+            ],
+            $id_emissao_beneficiario => [
+                $carteira_com_registro => '14',
+                $carteira_sem_registro => '24'
+            ]
+        ];
+
+        $nosso_numero = str_pad($value, 15, '0', STR_PAD_LEFT);
+
+        $this->data['nosso_numero'] = $modalidades[$id_emissao_beneficiario][$this->cod_carteira] . $nosso_numero;
+    }
 }

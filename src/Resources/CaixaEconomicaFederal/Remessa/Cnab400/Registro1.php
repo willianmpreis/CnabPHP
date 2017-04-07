@@ -303,7 +303,6 @@ class Registro1 extends Generico1
         ]
     ];
 
-
     protected function set_nosso_numero($value)
     {
         $id_emissao_banco = '1';
@@ -326,6 +325,11 @@ class Registro1 extends Generico1
         $nosso_numero = str_pad($value, 15, '0', STR_PAD_LEFT);
 
         $this->data['nosso_numero'] = $modalidades[$this->emissao_boleto][$this->cod_carteira] . $nosso_numero;
+    }
+
+    protected function set_agencia_cobradora($value)
+    {
+        $this->data['agencia_cobradora'] = $value;
     }
 }
 
