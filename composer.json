@@ -4,7 +4,7 @@
     "minimum-stability": "dev",
     "description": "Lot of stuffs to help with 'remessa', 'retorno' e 'boleto'",
     "homepage": "http://fagoc.br",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "license": "MIT",
     "keywords": [
         "boleto",
