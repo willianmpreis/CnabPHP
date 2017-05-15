@@ -2,9 +2,12 @@
 namespace CnabPHP\Resources\Sicoob\Remessa\Cnab400;
 
 use CnabPHP\Resources\Generico\Remessa\Cnab400\Generico1;
-use CnabPHP\RegistroRemessaAbstract;
 use CnabPHP\RemessaAbstract;
 
+/**
+ * Class Registro1
+ * @package CnabPHP\Resources\Sicoob\Remessa\Cnab400
+ */
 class Registro1 extends Generico1
 {
     protected $meta = array(

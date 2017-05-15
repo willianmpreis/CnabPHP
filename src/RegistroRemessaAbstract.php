@@ -103,8 +103,8 @@ abstract class RegistroRemessaAbstract
         if (isset($this->meta[$prop])) {
             $metaData = (isset($this->meta[$prop])) ? $this->meta[$prop] : null;
             $this->data[$prop] = !isset($this->data[$prop]) || $this->data[$prop] == '' ? $metaData['default'] : $this->data[$prop];
-            if ($metaData['required'] == true && ($this->data[$prop] == '' || !isset($this->data[$prop]))) {
-                throw new Exception('Campo faltante ou com valor nulo:' . $prop);
+            if ($metaData['required'] == true && (!isset($this->data[$prop]) || $this->data[$prop] == '')) {
+                throw new Exception('Campo faltante ou com valor nulo: ' . $prop);
             }
             switch ($metaData['tipo']) {
                 case 'decimal':
@@ -116,12 +116,12 @@ abstract class RegistroRemessaAbstract
                     return str_pad($retorno, $metaData['tamanho'], '0', STR_PAD_LEFT);
                     break;
                 case 'alfa':
-                    $retorno = ($this->data[$prop] || $this->data[$prop] === '0'  || $this->data[$prop] === 0) ? $this->prepareText($this->data[$prop]) : '';
-                    return str_pad(mb_substr($retorno,0,$metaData['tamanho'],"UTF-8"),$metaData['tamanho'],' ',STR_PAD_RIGHT);
+                    $retorno = ($this->data[$prop] || $this->data[$prop] === '0' || $this->data[$prop] === 0) ? $this->prepareText($this->data[$prop]) : '';
+                    return str_pad(mb_substr($retorno, 0, $metaData['tamanho'], "UTF-8"), $metaData['tamanho'], ' ', STR_PAD_RIGHT);
                     break;
                 case 'alfa2':
                     $retorno = ($this->data[$prop]) ? $this->data[$prop] : '';
-                    return str_pad(mb_substr($retorno,0,$metaData['tamanho'],"UTF-8"),$metaData['tamanho'],' ',STR_PAD_RIGHT);
+                    return str_pad(mb_substr($retorno, 0, $metaData['tamanho'], "UTF-8"), $metaData['tamanho'], ' ', STR_PAD_RIGHT);
                     break;
                 case $metaData['tipo'] == 'date' && $metaData['tamanho'] == 6:
                     $retorno = ($this->data[$prop]) ? date("dmy", strtotime($this->data[$prop])) : '';
@@ -208,6 +208,7 @@ abstract class RegistroRemessaAbstract
         $retorno = '';
         foreach ($this->meta as $key => $value) {
             /** @noinspection PhpVariableVariableInspection */
+            //print "{$key} :  {$this->$key} <br>";
             $retorno .= $this->$key;
         }
 

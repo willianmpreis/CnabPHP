@@ -88,6 +88,17 @@ abstract class RemessaAbstract
     }
 
     /**
+     * @param $data
+     */
+    public function adicionarDetalheMensagem($data)
+    {
+        //$class = '\CnabPHP\Resources\\' . self::$banco . '\remessa\\' . self::$layout . '\Registro1';
+        $class = $this->register(self::$banco, self::$leiaute, 2);
+
+        self::adicionarFilho(new $class($data));
+    }
+
+    /**
      * @param $leiaute
      */
     public function trocarLeiaute($leiaute)
@@ -129,7 +140,12 @@ abstract class RemessaAbstract
      */
     public static function getLote($index)
     {
-        return self::$filhos[$index];
+        if (isset(self::$filhos[$index])) {
+            return self::$filhos[$index];
+        } else if (isset(self::$filhos[$index - 1])) {
+            return self::$filhos[$index - 1];
+        }
+        return null;
     }
 
     /**
